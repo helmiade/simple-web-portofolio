@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import Card from "../components/Card";
 import Navbar from "../components/Navbar";
 import AOS from "aos";
@@ -18,6 +18,21 @@ import katalonImage from "../assets/katalon.png";
 import figmaImage from "../assets/figma.png";
 import postgresImage from "../assets/postgres.png";
 import pythonImage from "../assets/python.png";
+import emailjs from "@emailjs/browser";
+import { FaRegFaceSmileBeam } from "react-icons/fa6";
+import { CgSmileSad } from "react-icons/cg";
+import wmbImage from "../assets/porto/wmb.png";
+import caremateImage from "../assets/porto/caremate.png";
+import smartGardenImage from "../assets/porto/smart-garden.png";
+import loanImage from "../assets/porto/loan.png";
+import {
+  FiX,
+  FiMaximize,
+  FiShare2,
+  FiChevronLeft,
+  FiChevronRight,
+} from "react-icons/fi";
+import { Link } from "react-scroll";
 
 const HomePage = () => {
   useEffect(() => {
@@ -28,20 +43,143 @@ const HomePage = () => {
     });
   }, []);
 
+  const [isPopupOpen, setIsPopupOpen] = useState(false);
+  const [currentPorto, setCurrentPorto] = useState(0);
+  const [isFadeIn, setIsFadeIn] = useState(false);
+
+  const portfolioData = [
+    {
+      id: 1,
+      title: "Warung Makan Bahari API",
+      image: wmbImage,
+      description:
+        "I developed the WMB API using Spring Boot, implementing a RESTful architecture with JWT authentication for secure access. The API features comprehensive CRUD operations for managing orders, customers, tables, and menus, providing efficient handling of data. Additionally, it supports file upload and download functionalities, enhancing its versatility. To ensure reliability, I incorporated JUnit testing to verify the functionality and integrity of the system. This project demonstrates my skills in building robust and secure APIs while applying modern development practices.",
+    },
+    {
+      id: 2,
+      title: "CareMate App",
+      image: caremateImage,
+      description:
+        "CareMate is a donation platform designed to facilitate online fundraising, allowing users to support various social campaigns with ease. The platform provides features for organizations or individuals to create donation campaigns, update campaign progress, and enables donors to choose and contribute to different causes that resonate with them. As the Associate Project Manager for this project, I am responsible for ensuring the smooth and timely development and execution of the platform.",
+    },
+    {
+      id: 3,
+      title: "Smart Garden Care Assistant",
+      image: smartGardenImage,
+      description:
+        "The Smart Garden Care Assistant is a project that aims to develop a comprehensive mobile application that assists users in managing their gardens effectively. The app provides features such as plant identification and automated maintenance schedules based on plant type. As a machine learning specialist, my task is to manage database and build custom machine learning models using TensorFlow for plant recognition and analysis. These models will be integrated into a mobile application to provide accurate plant identification.",
+    },
+    {
+      id: 4,
+      title: "Loan APP",
+      image: loanImage,
+      description:
+        "I developed the Loan App system with a Spring Boot backend and a React.js frontend. The backend follows a RESTful architecture with JWT authentication and supports CRUD operations for managing customers and transactions, while PostgreSQL ensures secure data storage. The frontend provides a responsive and intuitive interface for seamless interaction. With JUnit testing ensuring reliability, this project highlights my skills in building secure, scalable APIs and dynamic, user-friendly web applications.",
+    },
+  ];
+
+  const openPopup = (index) => {
+    setCurrentPorto(index);
+    setIsPopupOpen(true);
+    setTimeout(() => setIsFadeIn(true), 100); // Trigger fade-in effect
+  };
+
+  const closePopup = () => {
+    setIsFadeIn(false); // Trigger fade-out effect
+    setTimeout(() => setIsPopupOpen(false), 300); // Delay closing to finish animation
+  };
+
+  const nextPorto = () => {
+    setCurrentPorto((prev) => (prev + 1) % portfolioData.length);
+  };
+
+  const prevPorto = () => {
+    setCurrentPorto(
+      (prev) => (prev - 1 + portfolioData.length) % portfolioData.length
+    );
+    // setIsFadeIn(false); // Trigger fade-out effect
+    // setTimeout(() => {
+    //   setCurrentPorto(
+    //     (prev) => (prev - 1 + portfolioData.length) % portfolioData.length
+    //   );
+    //   setIsFadeIn(true); // Trigger fade-in for previous item
+    // }, 300);
+  };
+
+  const [formData, setFormData] = useState({
+    name: "",
+    companyName: "",
+    email: "",
+    phone: "",
+    message: "",
+    reply_to: "",
+  });
+
+  const [formStatus, setFormStatus] = useState(null); // null, 'success', or 'error'
+  const [isSubmitted, setIsSubmitted] = useState(false);
+
+  const handleEmailChange = (e) => {
+    const emailValue = e.target.value;
+    setFormData({ ...formData, email: emailValue, reply_to: emailValue });
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
+    const serviceID = "service_yow0kz3"; // Ganti dengan Service ID dari EmailJS
+    const templateID = "template_p6x0ti5"; // Ganti dengan Template ID dari EmailJS
+    const publicKey = "88493nOpH5kzNzZEm"; // Ganti dengan Public Key dari EmailJS
+
+    try {
+      emailjs.send(
+        serviceID,
+        templateID,
+        formData, // Kirim data form langsung
+        publicKey
+      );
+
+      setFormStatus("success");
+
+      // Reset form dan sembunyikan form setelah beberapa detik
+      setTimeout(() => {
+        setFormData({
+          name: "",
+          companyName: "",
+          email: "",
+          phone: "",
+          message: "",
+          reply_to: "",
+        });
+        setIsSubmitted(false);
+        setFormStatus(null);
+      }, 3000); // Pesan tampil selama 3 detik
+
+      setIsSubmitted(true);
+    } catch (error) {
+      console.error("Error sending email:", error);
+      setFormStatus("error");
+
+      setTimeout(() => {
+        setIsSubmitted(false);
+        setFormStatus(null);
+      }, 3000000);
+    }
+  };
+
   return (
-    <div className="bg-white min-h-screen flex flex-col md:flex-row font-poppins mb-10">
+    <div className="m-5 bg-white min-h-screen flex flex-col md:flex-row font-poppins">
       {/* Komponen Card */}
       <Card />
 
       {/* Main Content */}
-      <div className="w-full md:w-3/4 flex flex-col mx-10">
+      <div className="w-full md:w-3/4 flex flex-col lg:mx-10">
         {/* Header Section */}
         <Navbar />
 
         {/* Home Section */}
         <section
           id="home"
-          className="h-screen flex flex-col pt-60 pr-28 space-y-10"
+          className="h-screen flex flex-col pt-20 lg:pt-60 lg:pr-28 space-y-10"
         >
           <div
             className="w-fit flex flex-row items-center space-x-2 border-2 border-gray-400 rounded-xl px-2"
@@ -50,23 +188,29 @@ const HomePage = () => {
             <MdAutoAwesome />
             <p className="text-gray-700">Lets Meet!</p>
           </div>
-          <h1 className="text-8xl font-bold" data-aos="fade-up">
+          <h1 className="text-5xl lg:text-8xl font-bold" data-aos="fade-up">
             I'm Muhammad Helmi Ade Pamungkas
           </h1>
-          <p className="mt-4 text-5xl" data-aos="fade-up">
+          <p className="mt-4 text-4xl lg:text-5xl" data-aos="fade-up">
             Full stack developer
           </p>
-          <div className="flex flex-row space-x-10">
+          <div className="flex flex-col lg:flex-row lg:space-x-10 space-y-2">
             <button
-              className="flex flex-row items-center space-x-2 bg-[#FFAB00] text-white rounded-3xl p-3 transition-transform transform hover:scale-110"
+              className="flex mx-2 lg:mx-0 justify-center flex-row items-center space-x-2 bg-[#FFAB00] text-white rounded-3xl p-3 transform transition-transform duration-200 hover:scale-110 hover:bg-yellow-500 cursor-pointer"
               data-aos="fade-up"
             >
-              <p className="font-semibold">My Projects</p>
-              <GrProjects />
+              <Link
+                to="portofolio"
+                smooth={true}
+                duration={500}
+                className="flex items-center space-x-2"
+              >
+                <p className="font-semibold">My Projects</p>
+                <GrProjects />
+              </Link>
             </button>
-
             <button
-              className="flex flex-row items-center space-x-1 text-xl font-medium transition-transform transform hover:scale-110 text-[#FFAB00]"
+              className="flex flex-row mx-2 lg:mx-0 border-2 border-[#FFAB00] lg:border-none rounded-3xl p-2 justify-center items-center space-x-2 lg:text-xl font-medium text-[#FFAB00] transform transition-all duration-200 hover:scale-110 hover:text-yellow-500 cursor-pointer"
               data-aos="fade-up"
             >
               <p>Download CV</p>
@@ -76,20 +220,27 @@ const HomePage = () => {
         </section>
 
         {/* Section About */}
-        <section id="about" className="flex flex-col" data-aos="fade-up">
-          <div className="h-screen space-y-10 pt-40">
+        <section
+          id="about"
+          className="min-h-screen flex flex-col pt-20 lg:pt-40 lg:pr-28 space-y-10"
+          data-aos="fade-up"
+        >
+          <div className="min-h-screen space-y-5 lg:space-y-10">
             <div className="w-fit flex flex-row items-center space-x-2 border-2 border-gray-400 rounded-xl px-2">
               <MdAutoAwesome />
               <p className="text-gray-700">About Me</p>
             </div>
             <h1
-              className="text-5xl font-bold text-gradient-to-r from-indigo-500 via-purple-500 to-pink-500"
+              className="text-2xl lg:text-5xl font-bold text-gradient-to-r from-indigo-500 via-purple-500 to-pink-500"
               data-aos="fade-up"
             >
               From Passion to Profession: My Journey
             </h1>
-            <div className="flex flex-row space-x-20 items-" data-aos="fade-up">
-              <div className="text-2xl w-2/3">
+            <div
+              className="flex flex-col lg:flex-row space-x-0 space-y-5 lg:space-y-0 lg:space-x-20 items-center lg:items-start"
+              data-aos="fade-up"
+            >
+              <div className="text-lg text-justify lg:text-2xl w-full lg:w-2/3">
                 <p>
                   Passionate about transforming ideas into impactful solutions,
                   I’m a fresh graduate with a solid foundation in mathematics
@@ -115,7 +266,7 @@ const HomePage = () => {
                   Let’s connect and start creating something amazing together!
                 </p>
               </div>
-              <div className="flex flex-col">
+              <div className="flex flex-col w-full lg:w-1/3 space-y-1 lg:space-y-5">
                 <div>
                   <h2>Name</h2>
                   <p className="font-semibold">Muhammad Helmi Ade Pamungkas</p>
@@ -135,7 +286,7 @@ const HomePage = () => {
               </div>
             </div>
             <button
-              className="flex flex-row items-center space-x-2 bg-[#FFAB00] text-white rounded-3xl p-3 transition-transform transform hover:scale-110 w-fit"
+              className="flex flex-row items-center space-x-2 bg-[#FFAB00] text-white rounded-3xl p-3 transition-transform transform hover:scale-110 w-fit mt-5"
               data-aos="fade-up"
             >
               <h3 className="font-semibold">Download CV</h3>
@@ -143,32 +294,29 @@ const HomePage = () => {
             </button>
           </div>
 
-          <div className="flex flex-col space-y-10">
+          <div className="flex flex-col space-y-10 mt-20">
             <h1
-              className="text-5xl font-bold text-gradient-to-r from-indigo-500 via-purple-500 to-pink-500"
+              className="text-2xl lg:text-5xl font-bold text-gradient-to-r from-indigo-500 via-purple-500 to-pink-500"
               data-aos="fade-up"
             >
               Skills
             </h1>
-            <div className="grid grid-cols-2 gap-2 h-4/5">
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-5">
               <button
                 className="bg-[#FFAB00] bg-opacity-100 text-white rounded-3xl flex flex-col"
                 data-aos="fade-up"
               >
                 <div className="p-3">
-                  <h1 className="font-semibold  text-4xl text-left">
+                  <h1 className="font-semibold text-4xl text-left">
                     Frontend Development
                   </h1>
                   <p className="mt-2 text-left text-lg">
                     I specialize in building responsive and visually appealing
                     interfaces using React.js and Tailwind CSS. My focus is on
                     creating seamless user experiences through clean, modern
-                    designs and efficient code. I also have experience in
-                    implementing interactive components and optimizing web
-                    performance.
+                    designs and efficient code.
                   </p>
                 </div>
-
                 <img
                   src={frontendImage}
                   className="w-full max-h-72 object-contain"
@@ -180,18 +328,15 @@ const HomePage = () => {
                 data-aos="fade-up"
               >
                 <div className="p-3">
-                  <h1 className="font-semibold  text-4xl text-left">
+                  <h1 className="font-semibold text-4xl text-left">
                     Backend Development
                   </h1>
                   <p className="mt-2 text-left text-lg">
                     I have a strong background in designing and developing
                     reliable APIs and backend systems with Java, Spring Boot,
-                    and PostgreSQL. I excel in creating secure, scalable, and
-                    maintainable solutions, ensuring smooth integration with
-                    frontend applications and handling complex data operations.
+                    and PostgreSQL.
                   </p>
                 </div>
-
                 <img
                   src={backendImage}
                   className="w-full max-h-72 object-contain"
@@ -203,18 +348,14 @@ const HomePage = () => {
                 data-aos="fade-up"
               >
                 <div className="p-3">
-                  <h1 className="font-semibold  text-4xl text-left">
+                  <h1 className="font-semibold text-4xl text-left">
                     Mobile Development
                   </h1>
                   <p className="mt-2 text-left text-lg">
                     My expertise extends to mobile application development,
-                    where I create user-friendly and efficient apps that adhere
-                    to modern design principles. I aim to deliver
-                    high-performance mobile solutions tailored to meet user
-                    needs.
+                    where I create user-friendly and efficient apps.
                   </p>
                 </div>
-
                 <img
                   src={mobileImage}
                   className="w-full max-h-72 object-contain"
@@ -226,16 +367,12 @@ const HomePage = () => {
                 data-aos="fade-up"
               >
                 <div className="p-3">
-                  <h1 className="font-semibold  text-4xl text-left">
+                  <h1 className="font-semibold text-4xl text-left">
                     Quality Assurance
                   </h1>
                   <p className="mt-2 text-left text-lg">
                     I am proficient in ensuring software quality through
-                    automated testing using Katalon Studio. I focus on writing
-                    and executing detailed test cases, identifying bugs, and
-                    improving system reliability. My experience covers
-                    functional, regression, and end-to-end testing, ensuring
-                    robust software delivery.
+                    automated testing using Katalon Studio.
                   </p>
                 </div>
                 <img
@@ -251,36 +388,125 @@ const HomePage = () => {
         {/* Section Portofolio */}
         <section
           id="portofolio"
-          className="h-screen flex flex-col pt-40 pr-28 space-y-10"
+          className="min-h-screen flex flex-col pt-20 lg:pt-40 lg:pr-28 space-y-5 lg:space-y-10"
         >
-          <div className=" w-fit flex flex-row items-center space-x-2 border-2 border-gray-400 rounded-xl px-2">
+          <div
+            className="w-fit flex flex-row items-center space-x-2 border-2 border-gray-400 rounded-xl px-2"
+            data-aos="fade-up"
+          >
             <MdAutoAwesome />
             <p className="text-gray-700">Portofolio</p>
           </div>
-          <h1 className="text-5xl font-bold text-gradient-to-r from-indigo-500 via-purple-500 to-pink-500">
+          <h1
+            className="text-2xl lg:text-5xl font-bold text-gradient-to-r from-indigo-500 via-purple-500 to-pink-500"
+            data-aos="fade-up"
+          >
             Checkout my recent projects
           </h1>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-5 h-4/5">
+            {portfolioData.map((porto, index) => (
+              <button
+                key={porto.id}
+                className="relative bg-cover bg-no-repeat bg-opacity-100 text-white rounded-3xl flex flex-col aspect-square"
+                style={{ backgroundImage: `url(${porto.image})` }}
+                data-aos="fade-up"
+                onClick={() => openPopup(index)}
+              >
+                <div className="absolute bottom-0 left-0 m-3 lg:m-6 p-2 lg:p-3 bg-[#FFAB00] rounded-2xl">
+                  <h1 className="font-semibold lg:text-xl text-left">
+                    {porto.title}
+                  </h1>
+                </div>
+              </button>
+            ))}
+          </div>
+
+          {/* Popup */}
+          {isPopupOpen && (
+            <div
+              className={`fixed inset-0 bg-black bg-opacity-90  flex items-center justify-center z-50 transition-opacity duration-300 ${
+                isFadeIn ? "opacity-100" : "opacity-0"
+              }`}
+              s
+              style={{
+                zIndex: "1000",
+                height: "100vh",
+                marginTop: "0px",
+                top: "0px",
+              }}
+              // Make sure overlay has high z-index
+            >
+              <div
+                className="rounded-xl lg:bg-white p-5 max-w-lg w-screen text-center transition-transform duration-300"
+                style={{ zIndex: "1001" }} // Popup content should be on top of the overlay
+              >
+                {/* Navigation Buttons */}
+                <button
+                  className="hidden lg:block absolute left-5 top-1/2 transform -translate-y-1/2 text-[#FFAB00] text-3xl"
+                  onClick={prevPorto}
+                >
+                  <FiChevronLeft />
+                </button>
+                <button
+                  className="hidden lg:block absolute right-5 top-1/2 transform -translate-y-1/2 text-[#FFAB00] text-3xl"
+                  onClick={nextPorto}
+                >
+                  <FiChevronRight />
+                </button>
+
+                {/* Close, Fullscreen, Share */}
+                <div className="absolute top-3 right-3 flex space-x-3">
+                  <button
+                    className="text-white text-2xl p-2 bg-[#FFAB00] rounded-full"
+                    onClick={closePopup}
+                  >
+                    <FiX />
+                  </button>
+                </div>
+
+                {/* Image */}
+                <img
+                  src={portfolioData[currentPorto].image}
+                  alt={portfolioData[currentPorto].title}
+                  className="w-full h-64 object-cover rounded-lg mb-4"
+                />
+
+                {/* Title */}
+                <h1 className="text-[#FFAB00] lg:text-black text-2xl font-semibold">
+                  {portfolioData[currentPorto].title}
+                </h1>
+
+                {/* Description */}
+                <p className="text-white lg:text-gray-700 mt-3 text-justify">
+                  {portfolioData[currentPorto].description}
+                </p>
+              </div>
+            </div>
+          )}
         </section>
 
         {/* Section Resume */}
         <section
           id="resume"
-          className="min-h-screen flex flex-col pt-40 space-y-10"
+          className="min-h-screen flex flex-col pt-20 lg:pt-40 space-y-5 lg:space-y-10 px-4 sm:px-6"
         >
           <div
-            className=" w-fit flex flex-row items-center space-x-2 border-2 border-gray-400 rounded-xl px-2"
+            className="w-fit flex flex-row items-center space-x-2 border-2 border-gray-400 rounded-xl px-2"
             data-aos="fade-up"
           >
             <MdAutoAwesome />
             <p className="text-gray-700">Resume</p>
           </div>
           <h1
-            className="text-5xl font-bold text-gradient-to-r from-indigo-500 via-purple-500 to-pink-500"
+            className="text-2xl lg:text-5xl font-bold text-gradient-to-r from-indigo-500 via-purple-500 to-pink-500"
             data-aos="fade-up"
           >
             Education and experience
           </h1>
-          <p data-aos="fade-up" className="text-2xl pr-28">
+          <p
+            data-aos="fade-up"
+            className="text-lg sm:text-2xl pr-0 sm:pr-28 text-justify"
+          >
             Education and experience form the foundation of my journey in
             developing expertise and building a meaningful career. Through
             formal education, I gained a solid knowledge base, while practical
@@ -290,13 +516,17 @@ const HomePage = () => {
             the professional world. Here is a glimpse of my journey in honing my
             skills and making impactful contributions.
           </p>
-          <div className="flex flex-col w-full text-lg pt-20">
-            <h1 className="text-3xl font-bold mb-4" data-aos="fade-up">
+
+          <div className="flex flex-col w-full text-lg pt-10 sm:pt-20">
+            <h1
+              className="text-2xl sm:text-3xl font-bold mb-4"
+              data-aos="fade-up"
+            >
               My Education
             </h1>
-            <div className=" border-gray-300 py-4">
+            <div className="border-gray-300 py-4">
               <div
-                className="border-t border-gray-300 py-4 grid grid-cols-3 gap-4"
+                className="grid grid-cols-1 sm:grid-cols-3 gap-4 border-t pt-4"
                 data-aos="fade-up"
               >
                 <h3 className="font-semibold">2020-2024</h3>
@@ -321,7 +551,7 @@ const HomePage = () => {
               </div>
             </div>
             <div className="border-y border-gray-300 py-4" data-aos="fade-up">
-              <div className="grid grid-cols-3 gap-4">
+              <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
                 <h3 className="font-semibold">2017-2020</h3>
                 <div>
                   <h3 className="font-semibold text-xl">
@@ -344,16 +574,20 @@ const HomePage = () => {
               </div>
             </div>
           </div>
-          <div className="flex flex-col w-full text-lg pt-20">
-            <h1 className="text-3xl font-bold mb-4" data-aos="fade-up">
+
+          <div className="flex flex-col w-full text-lg pt-10 sm:pt-20">
+            <h1
+              className="text-2xl sm:text-3xl font-bold mb-4"
+              data-aos="fade-up"
+            >
               My Experience
             </h1>
             <div className="border-t border-gray-300 py-4" data-aos="fade-up">
-              <div className="grid grid-cols-3 gap-4">
+              <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
                 <h3 className="font-semibold">2024</h3>
                 <div>
                   <h3 className="font-semibold text-xl">
-                    Full Stack developer Trainee
+                    Full Stack Developer Trainee
                   </h3>
                   <p>
                     <span>by</span>
@@ -377,7 +611,7 @@ const HomePage = () => {
               </div>
             </div>
             <div className="border-y border-gray-300 py-4" data-aos="fade-up">
-              <div className="grid grid-cols-3 gap-4">
+              <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
                 <h3 className="font-semibold">2023</h3>
                 <div>
                   <h3 className="font-semibold text-xl">
@@ -402,16 +636,24 @@ const HomePage = () => {
               </div>
             </div>
           </div>
-          <div className="flex flex-col w-full text-lg pt-20">
-            <h1 className="text-3xl font-bold mb-4" data-aos="fade-up">
+
+          <div className="flex flex-col w-full text-lg pt-10 sm:pt-20">
+            <h1
+              className="text-2xl sm:text-3xl font-bold mb-4"
+              data-aos="fade-up"
+            >
               My Favorite Tools
             </h1>
-            <div className="grid grid-cols-4 gap-4">
+            <div className="grid grid-cols-2 sm:grid-cols-4 gap-4">
               <div
                 className="flex flex-col border border-gray-300 rounded-3xl p-4 items-center space-y-2"
                 data-aos="fade-up"
               >
-                <img src={htmlImage} alt="HTML" className="w-auto h-20" />
+                <img
+                  src={htmlImage}
+                  alt="HTML"
+                  className="w-auto h-16 sm:h-20"
+                />
                 <h3 className="text-justify">HTML5</h3>
               </div>
               <div
@@ -421,7 +663,7 @@ const HomePage = () => {
                 <img
                   src={tailwindImage}
                   alt="Tailwind"
-                  className="w-auto h-20"
+                  className="w-auto h-16 sm:h-20"
                 />
                 <h3 className="text-justify">TailwindCSS</h3>
               </div>
@@ -429,7 +671,11 @@ const HomePage = () => {
                 className="flex flex-col border border-gray-300 rounded-3xl p-4 items-center space-y-2"
                 data-aos="fade-up"
               >
-                <img src={reactImage} alt="React" className="w-auto h-20" />
+                <img
+                  src={reactImage}
+                  alt="React"
+                  className="w-auto h-16 sm:h-20"
+                />
                 <h3 className="text-justify">React</h3>
               </div>
               <div
@@ -439,7 +685,7 @@ const HomePage = () => {
                 <img
                   src={springImage}
                   alt="Spring Boot"
-                  className="w-auto h-20"
+                  className="w-auto h-16 sm:h-20"
                 />
                 <h3 className="text-justify">Spring Boot</h3>
               </div>
@@ -447,14 +693,22 @@ const HomePage = () => {
                 className="flex flex-col border border-gray-300 rounded-3xl p-4 items-center space-y-2"
                 data-aos="fade-up"
               >
-                <img src={katalonImage} alt="Katalon" className="w-auto h-20" />
+                <img
+                  src={katalonImage}
+                  alt="Katalon"
+                  className="w-auto h-16 sm:h-20"
+                />
                 <h3 className="text-justify">Katalon Studio</h3>
               </div>
               <div
                 className="flex flex-col border border-gray-300 rounded-3xl p-4 items-center space-y-2"
                 data-aos="fade-up"
               >
-                <img src={figmaImage} alt="Figma" className="w-auto h-20" />
+                <img
+                  src={figmaImage}
+                  alt="Figma"
+                  className="w-auto h-16 sm:h-20"
+                />
                 <h3 className="text-justify">Figma</h3>
               </div>
               <div
@@ -464,7 +718,7 @@ const HomePage = () => {
                 <img
                   src={postgresImage}
                   alt="PostgreSQL"
-                  className="w-auto h-20"
+                  className="w-auto h-16 sm:h-20"
                 />
                 <h3 className="text-justify">PostgreSQL</h3>
               </div>
@@ -472,7 +726,11 @@ const HomePage = () => {
                 className="flex flex-col border border-gray-300 rounded-3xl p-4 items-center space-y-2"
                 data-aos="fade-up"
               >
-                <img src={pythonImage} alt="Python" className="w-auto h-20" />
+                <img
+                  src={pythonImage}
+                  alt="Python"
+                  className="w-auto h-16 sm:h-20"
+                />
                 <h3 className="text-justify">Python</h3>
               </div>
             </div>
@@ -482,7 +740,7 @@ const HomePage = () => {
         {/* Section Contact */}
         <section
           id="contact"
-          className="h-screen flex flex-col pt-40 pr-28 space-y-10"
+          className="h-screen flex flex-col pt-20 lg:pt-40 lg:pr-28 space-y-10 mb-10 lg:mb-0"
         >
           <div
             className="w-fit flex flex-row items-center space-x-2 border-2 border-gray-400 rounded-xl px-2"
@@ -492,50 +750,95 @@ const HomePage = () => {
             <p className="text-gray-700">Contact</p>
           </div>
           <h1
-            className="text-5xl font-bold text-gradient-to-r from-indigo-500 via-purple-500 to-pink-500"
+            className="text-2xl lg:text-5xl font-bold text-gradient-to-r from-indigo-500 via-purple-500 to-pink-500"
             data-aos="fade-up"
           >
             Let's make something great together!
           </h1>
-          <form className="space-y-6" data-aos="fade-up">
-            <div className="grid grid-cols-2 gap-4">
-              <input
-                type="text"
-                placeholder="Your Name"
-                className="border-b border-gray-300 p-3 focus:outline-none focus:border-[#FFAB00]"
-                required
-              />
-              <input
-                type="text"
-                placeholder="Company Name"
-                className="border-b border-gray-300 p-3 focus:outline-none focus:border-[#FFAB00]"
-              />
-            </div>
-            <div className="grid grid-cols-2 gap-4">
-              <input
-                type="email"
-                placeholder="Email"
-                className="border-b border-gray-300 p-3 focus:outline-none focus:border-[#FFAB00]"
-                required
-              />
-              <input
-                type="text"
-                placeholder="Phone Number"
-                className="border-b border-gray-300 p-3 focus:outline-none focus:border-[#FFAB00]"
-              />
-            </div>
-            <textarea
-              placeholder="A few words..."
-              className="w-full border-2 border-gray-300 rounded-sm p-3 h-28 focus:outline-none focus:ring-2 focus:ring-[#FFAB00]"
-              required
-            ></textarea>
-            <button
-              type="submit"
-              className="bg-[#FFAB00] rounded-full hover:scale-110 hover:bg-yellow-500 transition-transform transition-colors duration-200 py-4 px-10 cursor-pointer text-white"
-            >
-              Send Message
-            </button>
-          </form>
+          <div>
+            {isSubmitted && formStatus === "success" && (
+              <div
+                className="h-auto flex flex-col items-center justify-center lg:text-3xl text-[#FFAB00] space-y-2 mt-36"
+                data-aos="fade"
+              >
+                <FaRegFaceSmileBeam />
+                <p>Thank you! Your message has been sent.</p>
+              </div>
+            )}
+            {isSubmitted && formStatus === "error" && (
+              <div
+                className="h-auto flex flex-col items-center justify-center lg:text-3xl text-red-500 space-y-2 mt-36"
+                data-aos="fade"
+              >
+                <CgSmileSad />
+                <p>Oops! Something went wrong. Please try again.</p>
+              </div>
+            )}
+
+            {!isSubmitted && (
+              <form
+                className="space-y-6"
+                data-aos="fade-up"
+                onSubmit={handleSubmit}
+              >
+                <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
+                  <input
+                    type="text"
+                    placeholder="Your Name"
+                    className="border-b border-gray-300 p-3 focus:outline-none focus:border-[#FFAB00]"
+                    value={formData.name}
+                    onChange={(e) =>
+                      setFormData({ ...formData, name: e.target.value })
+                    }
+                    required
+                  />
+                  <input
+                    type="text"
+                    placeholder="Company Name"
+                    className="border-b border-gray-300 p-3 focus:outline-none focus:border-[#FFAB00]"
+                    value={formData.companyName}
+                    onChange={(e) =>
+                      setFormData({ ...formData, companyName: e.target.value })
+                    }
+                  />
+                </div>
+                <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
+                  <input
+                    type="email"
+                    placeholder="Email"
+                    className="border-b border-gray-300 p-3 focus:outline-none focus:border-[#FFAB00]"
+                    value={formData.email}
+                    onChange={handleEmailChange}
+                    required
+                  />
+                  <input
+                    type="text"
+                    placeholder="Phone Number"
+                    className="border-b border-gray-300 p-3 focus:outline-none focus:border-[#FFAB00]"
+                    value={formData.phone}
+                    onChange={(e) =>
+                      setFormData({ ...formData, phone: e.target.value })
+                    }
+                  />
+                </div>
+                <textarea
+                  placeholder="A few words..."
+                  className="w-full border-2 border-gray-300 rounded-sm p-3 h-28 focus:outline-none focus:ring-2 focus:ring-[#FFAB00]"
+                  value={formData.message}
+                  onChange={(e) =>
+                    setFormData({ ...formData, message: e.target.value })
+                  }
+                  required
+                ></textarea>
+                <button
+                  type="submit"
+                  className="bg-[#FFAB00] rounded-full hover:scale-110 hover:bg-yellow-500 transition-transform transition-colors duration-200 py-4 px-10 cursor-pointer text-white"
+                >
+                  Send Message
+                </button>
+              </form>
+            )}
+          </div>
         </section>
       </div>
     </div>

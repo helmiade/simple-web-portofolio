@@ -9,7 +9,7 @@ import { FiInstagram } from "react-icons/fi";
 const Card = () => {
   const name = "Muhammad Helmi Ade Pamungkas";
   return (
-    <div className="sticky top-10 w-1/4 h-1/2 bg-black rounded-[100px] mx-20">
+    <div className="lg:sticky top-10 w-full lg:w-1/4 lg:h-1/2 bg-black rounded-[60px] lg:rounded-[100px] lg:mx-20">
       <div className="flex flex-col m-14">
         <h1 className="text-4xl font-bold text-white">{name}</h1>
         <img
@@ -30,19 +30,40 @@ const Card = () => {
           <h1 className="text-2xl font-bold text-white">Based in:</h1>
           <h3 className="text-white">Jakarta, Indonesia</h3>
         </div>
-        <div className="mt-5 flex flex-row justify-between">
-          <button className="rounded-full hover:scale-110 hover:bg-blue-600 transition-transform transition-colors duration-200 p-3">
+        <div className="mt-5 flex flex-row justify-center">
+          <a
+            href="https://www.facebook.com/muhammad.h.pamungkas.568"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="rounded-full hover:scale-110 hover:bg-blue-600 transition-transform transition-colors duration-200 p-3"
+          >
             <CiFacebook color="white" size={40} />
-          </button>
-          <button className="rounded-full hover:scale-110 hover:bg-gray-600 transition-transform transition-colors duration-200 p-3">
+          </a>
+
+          <a
+            href="https://github.com/helmiade"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="rounded-full hover:scale-110 hover:bg-gray-600 transition-transform transition-colors duration-200 p-3"
+          >
             <FiGithub color="white" size={40} />
-          </button>
-          <button className="rounded-full hover:scale-110 hover:bg-blue-700 transition-transform transition-colors duration-200 p-3">
+          </a>
+          <a
+            href="https://www.linkedin.com/in/helmiade/"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="rounded-full hover:scale-110 hover:bg-blue-700 transition-transform transition-colors duration-200 p-3"
+          >
             <FaLinkedinIn color="white" size={40} />
-          </button>
-          <button className="rounded-full hover:scale-110 hover:bg-pink-500 transition-transform transition-colors duration-200 p-3">
+          </a>
+          <a
+            href="https://www.instagram.com/helmiad16/"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="rounded-full hover:scale-110 hover:bg-pink-500 transition-transform transition-colors duration-200 p-3"
+          >
             <FiInstagram color="white" size={40} />
-          </button>
+          </a>
         </div>
       </div>
     </div>

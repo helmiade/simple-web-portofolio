@@ -433,7 +433,7 @@ const HomePage = () => {
                 data-aos="fade-up"
               >
                 <MdAutoAwesome />
-                <p className="text-gray-700">Portofolio</p>
+                <p className="text-gray-700">Portfolio</p>
               </div>
               <h1
                 className="text-2xl lg:text-5xl font-bold text-gradient-to-r from-indigo-500 via-purple-500 to-pink-500"

@@ -143,7 +143,6 @@ const HomePage = () => {
     const templateID = import.meta.env.VITE_EMAILJS_TEMPLATE_ID;
     const publicKey = import.meta.env.VITE_EMAILJS_PUBLIC_KEY;
 
-    console.log(serviceID, templateID, publicKey); // Menampilkan nilai variabel
 
     try {
       emailjs.send(

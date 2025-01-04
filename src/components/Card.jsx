@@ -9,7 +9,7 @@ import { FiInstagram } from "react-icons/fi";
 const Card = () => {
   const name = "Muhammad Helmi Ade Pamungkas";
   return (
-    <div className="lg:sticky top-10 w-full lg:w-1/4 lg:h-1/2 bg-black rounded-[60px] lg:rounded-[100px] lg:mx-20">
+    <div className="lg:sticky top-10 w-full lg:w-1/4 lg:h-1/2 bg-black rounded-[60px] lg:rounded-[100px] lg:mx-20" data-aos="fade-up">
       <div className="flex flex-col m-14">
         <h1 className="text-4xl font-bold text-white">{name}</h1>
         <img

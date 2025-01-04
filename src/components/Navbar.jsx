@@ -76,7 +76,7 @@ const Navbar = () => {
       </header>
 
       {/* Bottom Bar untuk HP */}
-      <div className="lg:hidden fixed bottom-0 w-4/5 mb-1 bg-white bg-opacity-90 p-2 rounded-full flex justify-between align-center mx-5 shadow-lg z-10">
+      <div className="lg:hidden fixed bottom-0 w-4/5 mb-2 bg-white bg-opacity-90 p-2 rounded-full flex justify-between align-center mx-5 shadow-lg z-10">
         <Link
           to="home"
           smooth={true}

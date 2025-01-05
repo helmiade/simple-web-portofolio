@@ -5,6 +5,7 @@ import { CiFacebook } from "react-icons/ci";
 import { FiGithub } from "react-icons/fi";
 import { FaLinkedinIn } from "react-icons/fa";
 import { FiInstagram } from "react-icons/fi";
+import profilePict from "../assets/Desain tanpa judul.png";
 
 const Card = () => {
   const name = "Muhammad Helmi Ade Pamungkas";
@@ -13,8 +14,8 @@ const Card = () => {
       <div className="flex flex-col m-14">
         <h1 className="text-4xl font-bold text-white">{name}</h1>
         <img
-          src={profileImage}
-          className="aspect-square rounded-3xl mt-10"
+          src={profilePict}
+          className="aspect-square object-top rounded-3xl mt-10"
           alt="Profil"
         />
         <div className="mt-5 justify-start">

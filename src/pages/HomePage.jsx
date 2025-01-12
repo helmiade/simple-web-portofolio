@@ -235,7 +235,7 @@ const HomePage = () => {
                 </button>
                 <a
                   href={
-                    "https://drive.google.com/file/d/1jeimyaSxfzONeK6ZEFFN0o3ATor3ZsFy/view?usp=sharing"
+                    "https://drive.google.com/file/d/16MJsr9rvWiAboD0Oehc8rjCnHO7qSQmK/view?usp=sharing"
                   }
                   target="_blank"
                   rel="noopener noreferrer"
@@ -320,7 +320,7 @@ const HomePage = () => {
                 </div>
                 <a
                   href={
-                    "https://drive.google.com/file/d/1jeimyaSxfzONeK6ZEFFN0o3ATor3ZsFy/view?usp=sharing"
+                    "https://drive.google.com/file/d/16MJsr9rvWiAboD0Oehc8rjCnHO7qSQmK/view?usp=sharing"
                   }
                   target="_blank"
                   rel="noopener noreferrer"

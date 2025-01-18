@@ -16,7 +16,7 @@ const About = () => {
               <div className="min-h-screen space-y-5 lg:space-y-10">
                 <div className="w-fit flex flex-row items-center space-x-2 border-2 border-gray-400 rounded-xl px-2">
                   <MdAutoAwesome />
-                  <p className="text-gray-700">About Me</p>
+                  <p className="text-gray-700 dark:text-white">About Me</p>
                 </div>
                 <h1
                   className="text-2xl lg:text-5xl font-bold text-gradient-to-r from-indigo-500 via-purple-500 to-pink-500"

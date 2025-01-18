@@ -3,22 +3,11 @@ import { MdAutoAwesome } from 'react-icons/md'
 import htmlImage from "../assets/html.png";
 import reactImage from "../assets/react.svg";
 import tailwindImage from "../assets/tailwind.png";
-import frontendImage from "../assets/frontend.png";
-import backendImage from "../assets/backend.png";
-import mobileImage from "../assets/mobile.png";
-import testingImage from "../assets/testing.png";
 import springImage from "../assets/spring.png";
 import katalonImage from "../assets/katalon.png";
 import figmaImage from "../assets/figma.png";
 import postgresImage from "../assets/postgres.png";
 import pythonImage from "../assets/python.png";
-import emailjs from "@emailjs/browser";
-import { FaRegFaceSmileBeam } from "react-icons/fa6";
-import { CgSmileSad } from "react-icons/cg";
-import wmbImage from "../assets/porto/wmb.png";
-import caremateImage from "../assets/porto/caremate.png";
-import smartGardenImage from "../assets/porto/smart-garden.png";
-import loanImage from "../assets/porto/loan.png";
 
 const Resume = () => {
   return (
@@ -31,7 +20,7 @@ const Resume = () => {
                 data-aos="fade-up"
               >
                 <MdAutoAwesome />
-                <p className="text-gray-700">Resume</p>
+                <p className="text-gray-700 dark:text-white">Resume</p>
               </div>
               <h1
                 className="text-2xl lg:text-5xl font-bold text-gradient-to-r from-indigo-500 via-purple-500 to-pink-500"

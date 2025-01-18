@@ -14,6 +14,9 @@ import About from "../sections/About";
 import Portfolio from "../sections/Portfolio";
 import Resume from "../sections/Resume";
 import Contact from "../sections/Contact";
+import { use } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { toggleDarkMode } from "../redux/feature/darkModeSlice";
 
 const HomePage = () => {
   useEffect(() => {
@@ -167,9 +170,26 @@ const HomePage = () => {
       document.removeEventListener('keydown', handleKeyDown);
     };
   }, []);
+  const dispatch = useDispatch();
+
+  const isDarkMode = useSelector((state) => state.darkMode.isDarkMode);
+
+  // Update the theme on mount
+  useEffect(() => {
+    if (isDarkMode) {
+      document.documentElement.classList.add("dark");
+    } else {
+      document.documentElement.classList.remove("dark");
+    }
+  }, [isDarkMode]);
+
+  // Handle Dark Mode toggle
+  const handleDarkMode = () => {
+    dispatch(toggleDarkMode());
+  };
 
   return (
-    <>
+    <div className={isDarkMode ? "dark" : ""}>
       {isLoading ? (
         <div className="flex items-center justify-center h-screen">
           <Audio
@@ -181,12 +201,12 @@ const HomePage = () => {
           />
         </div>
       ) : (
-        <div className="p-5 bg-white min-h-screen flex flex-col md:flex-row font-poppins">
+          <div className="p-5 bg-white dark:bg-background-dark dark:text-text-dark min-h-screen flex flex-col md:flex-row font-poppins">
           <Card />
 
           <div className="w-full md:w-3/4 flex flex-col lg:mx-10">
             {/* Header Section */}
-            <Navbar />
+            <Navbar handleToogleDark={handleDarkMode} isDarkMode={isDarkMode}/>
             {/* Home Section */}
             <Home/>
             {/* Section About */}
@@ -199,8 +219,9 @@ const HomePage = () => {
             <Contact isSubmitted={isSubmitted} formStatus={formStatus } handleSubmit={handleSubmit} formData={formData} setFormData={setFormData} handleEmailChange={handleEmailChange}/>
           </div>
         </div>
+        
       )}
-    </>
+    </div>
   );
 };
 

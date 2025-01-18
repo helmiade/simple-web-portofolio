@@ -191,7 +191,7 @@ const HomePage = () => {
   return (
     <div className={isDarkMode ? "dark" : ""}>
       {isLoading ? (
-        <div className="flex items-center justify-center h-screen">
+        <div className="flex items-center justify-center h-screen dark:bg-background-dark">
           <Audio
             height="80"
             width="80"

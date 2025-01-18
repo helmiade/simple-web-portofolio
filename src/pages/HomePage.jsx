@@ -181,7 +181,7 @@ const HomePage = () => {
           />
         </div>
       ) : (
-        <div className="m-5 bg-white min-h-screen flex flex-col md:flex-row font-poppins">
+        <div className="p-5 bg-white min-h-screen flex flex-col md:flex-row font-poppins">
           <Card />
 
           <div className="w-full md:w-3/4 flex flex-col lg:mx-10">

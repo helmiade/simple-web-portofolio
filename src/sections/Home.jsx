@@ -21,7 +21,7 @@ const Home = () => {
           I'm Muhammad Helmi Ade Pamungkas
         </h1>
         <p className="mt-4 text-3xl lg:text-3xl" data-aos="fade-up">
-          Full stack developer
+          Tech Enthusiast
         </p>
         <div className="flex flex-col lg:flex-row lg:space-x-10 space-y-2">
           <button

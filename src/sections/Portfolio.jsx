@@ -6,7 +6,7 @@ const Portfolio = ({ portfolioData, isPopupOpen,  currentPorto,  isFadeIn, openP
   return (
     <section
               id="portofolio"
-              className="min-h-screen flex flex-col pt-20 lg:pt-40 lg:pr-28 space-y-5 lg:space-y-10"
+              className="min-h-screen flex flex-col pt-20 lg:pt-32 lg:pr-28 space-y-5 lg:space-y-10"
             >
               <div
                 className="w-fit flex flex-row items-center space-x-2 border-2 border-gray-400 rounded-xl px-2"
@@ -16,7 +16,7 @@ const Portfolio = ({ portfolioData, isPopupOpen,  currentPorto,  isFadeIn, openP
                 <p className="text-gray-700 dark:text-white">Portfolio</p>
               </div>
               <h1
-                className="text-2xl lg:text-5xl font-bold text-gradient-to-r from-indigo-500 via-purple-500 to-pink-500"
+                className="text-2xl lg:text-4xl font-bold text-gradient-to-r from-indigo-500 via-purple-500 to-pink-500"
                 data-aos="fade-up"
               >
                 Checkout my recent projects
@@ -30,8 +30,8 @@ const Portfolio = ({ portfolioData, isPopupOpen,  currentPorto,  isFadeIn, openP
                     data-aos="fade-up"
                     onClick={() => openPopup(index)}
                   >
-                    <div className="absolute bottom-0 left-0 m-3 lg:m-6 p-2 lg:p-3 bg-[#FFAB00] rounded-2xl">
-                      <h1 className="font-semibold lg:text-xl text-left">
+                    <div className="absolute bottom-0 left-0 m-3 lg:m-3 p-2 lg:p-2 bg-[#FFAB00] rounded-2xl">
+                      <h1 className="font-semibold lg:text-sm text-left">
                         {porto.title}
                       </h1>
                     </div>

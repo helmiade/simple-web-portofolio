@@ -13,9 +13,9 @@ const Navbar = ({handleToogleDark, isDarkMode}) => {
   return (
     <>
       {/* Navbar untuk Laptop */}
-      <header className="hidden w-full sticky top-10 lg:flex flex-col md:flex-row justify-between items-center text-2xl z-40">
+      <header className="hidden w-full sticky top-5 lg:flex flex-col md:flex-row justify-between items-center text-lg z-40">
         {/* Menu Navigasi */}
-        <nav className="flex flex-row text-black dark:text-text-dark space-x-14 rounded-full p-4 bg-white dark:bg-background-dark bg-opacity-80">
+        <nav className="flex flex-row text-black dark:text-text-dark space-x-8 rounded-full p-2 bg-white dark:bg-background-dark bg-opacity-80">
           <Link
             to="home"
             smooth={true}
@@ -79,9 +79,9 @@ const Navbar = ({handleToogleDark, isDarkMode}) => {
             to="contact"
             smooth={true}
             duration={500}
-            className="bg-[#FFAB00] rounded-full flex flex-row items-center space-x-2 hover:scale-110 hover:bg-yellow-500 transition-transform transition-colors duration-200 py-4 px-6 cursor-pointer"
+            className="bg-[#FFAB00] rounded-full flex flex-row items-center space-x-2 hover:scale-110 hover:bg-yellow-500 transition-transform transition-colors duration-200 py-2 px-3 cursor-pointer"
           >
-            <h1 className="text-white font-semibold text-lg">Let’s Talk</h1>
+            <h1 className="text-white font-semibold text-sm">Let’s Talk</h1>
             <RiMessage2Line size={24} color="white" />
           </Link>
         </div>

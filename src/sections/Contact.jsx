@@ -14,7 +14,7 @@ const Contact = ({
   return (
     <section
       id="contact"
-      className="h-screen flex flex-col pt-20 lg:pt-40 lg:pr-28 space-y-10 mb-10 lg:mb-0"
+      className="h-screen flex flex-col pt-20 lg:pt-32 lg:pr-28 space-y-10 mb-10 lg:mb-0"
     >
       <div
         className="w-fit flex flex-row items-center space-x-2 border-2 border-gray-400 rounded-xl px-2"
@@ -24,7 +24,7 @@ const Contact = ({
         <p className="text-gray-700 dark:text-white">Contact</p>
       </div>
       <h1
-        className="text-2xl lg:text-5xl font-bold text-gradient-to-r from-indigo-500 via-purple-500 to-pink-500"
+        className="text-2xl lg:text-4xl font-bold text-gradient-to-r from-indigo-500 via-purple-500 to-pink-500"
         data-aos="fade-up"
       >
         Let's make something great together!
@@ -109,7 +109,7 @@ const Contact = ({
             ></textarea>
             <button
               type="submit"
-              className="bg-[#FFAB00] rounded-full hover:scale-110 hover:bg-yellow-500 transition-transform transition-colors duration-200 py-4 px-10 cursor-pointer text-white"
+              className="bg-[#FFAB00] rounded-full hover:scale-110 hover:bg-yellow-500 transition-transform transition-colors duration-200 py-4 px-10 lg:px-5 lg:py-2 cursor-pointer text-white"
             >
               Send Message
             </button>

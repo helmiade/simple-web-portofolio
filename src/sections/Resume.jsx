@@ -13,7 +13,7 @@ const Resume = () => {
   return (
     <section
               id="resume"
-              className="min-h-screen flex flex-col pt-20 lg:pt-40 space-y-5 lg:space-y-10 px-4 sm:px-6"
+              className="min-h-screen flex flex-col pt-20 lg:pt-32 space-y-5 lg:space-y-10 px-4 sm:px-6"
             >
               <div
                 className="w-fit flex flex-row items-center space-x-2 border-2 border-gray-400 rounded-xl px-2"
@@ -23,14 +23,14 @@ const Resume = () => {
                 <p className="text-gray-700 dark:text-white">Resume</p>
               </div>
               <h1
-                className="text-2xl lg:text-5xl font-bold text-gradient-to-r from-indigo-500 via-purple-500 to-pink-500"
+                className="text-2xl lg:text-4xl font-bold text-gradient-to-r from-indigo-500 via-purple-500 to-pink-500"
                 data-aos="fade-up"
               >
                 Education and experience
               </h1>
               <p
                 data-aos="fade-up"
-                className="text-lg sm:text-2xl pr-0 sm:pr-28 text-justify"
+                className="text-lg sm:text-xl pr-0 sm:pr-28 text-justify"
               >
                 Education and experience form the foundation of my journey in
                 developing expertise and building a meaningful career. Through

@@ -10,7 +10,7 @@ const About = () => {
   return (
     <section
               id="about"
-              className="min-h-screen flex flex-col pt-20 lg:pt-40 lg:pr-28 space-y-10"
+              className="min-h-screen flex flex-col pt-20 lg:pt-32 lg:pr-28 space-y-10"
               data-aos="fade-up"
             >
               <div className="min-h-screen space-y-5 lg:space-y-10">
@@ -19,16 +19,16 @@ const About = () => {
                   <p className="text-gray-700 dark:text-white">About Me</p>
                 </div>
                 <h1
-                  className="text-2xl lg:text-5xl font-bold text-gradient-to-r from-indigo-500 via-purple-500 to-pink-500"
+                  className="text-2xl lg:text-4xl font-bold text-gradient-to-r from-indigo-500 via-purple-500 to-pink-500"
                   data-aos="fade-up"
                 >
                   From Passion to Profession: My Journey
                 </h1>
                 <div
-                  className="flex flex-col lg:flex-row space-x-0 space-y-5 lg:space-y-0 lg:space-x-20 items-center lg:items-start"
+                  className="flex flex-col lg:flex-row space-x-0 space-y-5 lg:space-y-0 lg:space-x-10 items-center lg:items-start"
                   data-aos="fade-up"
                 >
-                  <div className="text-lg text-justify lg:text-2xl w-full lg:w-2/3">
+                  <div className="text-lg text-justify lg:text-xl w-full lg:w-2/3">
                     <p>
                       Passionate about transforming ideas into impactful
                       solutions, I’m a fresh graduate with a solid foundation in
@@ -93,7 +93,7 @@ const About = () => {
 
               <div className="flex flex-col space-y-10 mt-20">
                 <h1
-                  className="text-2xl lg:text-5xl font-bold text-gradient-to-r from-indigo-500 via-purple-500 to-pink-500"
+                  className="text-2xl lg:text-4xl font-bold text-gradient-to-r from-indigo-500 via-purple-500 to-pink-500"
                   data-aos="fade-up"
                 >
                   Skills
@@ -104,10 +104,10 @@ const About = () => {
                     data-aos="fade-up"
                   >
                     <div className="p-3">
-                      <h1 className="font-semibold text-4xl text-left">
+                      <h1 className="font-semibold text-2xl text-left">
                         Frontend Development
                       </h1>
-                      <p className="mt-2 text-left text-lg">
+                      <p className="mt-2 text-left text-sm">
                         I specialize in building responsive and visually
                         appealing interfaces using React.js and Tailwind CSS. My
                         focus is on creating seamless user experiences through
@@ -125,10 +125,10 @@ const About = () => {
                     data-aos="fade-up"
                   >
                     <div className="p-3">
-                      <h1 className="font-semibold text-4xl text-left">
+                      <h1 className="font-semibold text-2xl text-left">
                         Backend Development
                       </h1>
-                      <p className="mt-2 text-left text-lg">
+                      <p className="mt-2 text-left text-sm">
                         I have a strong background in designing and developing
                         reliable APIs and backend systems with Java, Spring
                         Boot, and PostgreSQL.
@@ -145,10 +145,10 @@ const About = () => {
                     data-aos="fade-up"
                   >
                     <div className="p-3">
-                      <h1 className="font-semibold text-4xl text-left">
+                      <h1 className="font-semibold text-2xl text-left">
                         Mobile Development
                       </h1>
-                      <p className="mt-2 text-left text-lg">
+                      <p className="mt-2 text-left text-sm">
                         My expertise extends to mobile application development,
                         where I create user-friendly and efficient apps.
                       </p>
@@ -164,10 +164,10 @@ const About = () => {
                     data-aos="fade-up"
                   >
                     <div className="p-3">
-                      <h1 className="font-semibold text-4xl text-left">
+                      <h1 className="font-semibold text-2xl text-left">
                         Quality Assurance
                       </h1>
-                      <p className="mt-2 text-left text-lg">
+                      <p className="mt-2 text-left text-sm">
                         I am proficient in ensuring software quality through
                         automated testing using Katalon Studio.
                       </p>

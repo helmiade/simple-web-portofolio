@@ -8,7 +8,7 @@ const Home = () => {
   return (
       <section
         id="home"
-        className="h-screen flex flex-col pt-24 lg:pt-48 lg:pr-28 space-y-10"
+        className="h-screen flex flex-col pt-24 lg:pt-32 lg:pr-28 space-y-10 lg:space-y-5"
       >
         <div
           className="w-fit flex flex-row items-center space-x-2 border-2 border-gray-400 rounded-xl px-2"
@@ -17,10 +17,10 @@ const Home = () => {
           <MdAutoAwesome />
           <p className="text-gray-700 dark:text-white">Lets Meet!</p>
         </div>
-        <h1 className="text-4xl lg:text-8xl font-bold" data-aos="fade-up">
+        <h1 className="text-4xl lg:text-7xl font-bold" data-aos="fade-up">
           I'm Muhammad Helmi Ade Pamungkas
         </h1>
-        <p className="mt-4 text-3xl lg:text-5xl" data-aos="fade-up">
+        <p className="mt-4 text-3xl lg:text-3xl" data-aos="fade-up">
           Full stack developer
         </p>
         <div className="flex flex-col lg:flex-row lg:space-x-10 space-y-2">
